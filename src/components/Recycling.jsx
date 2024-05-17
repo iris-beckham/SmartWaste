@@ -23,8 +23,8 @@ const Recycling = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     //this useState sets array of images
     const imagesArrayUrls = [
-        "https://res.cloudinary.com/dvmczcg3f/image/upload/v1712642472/Tale%20Blazers/tarot-cards-profile-pic_fv6p7p.jpg",
-        "https://res.cloudinary.com/dvmczcg3f/image/upload/v1711650725/chartd_qlhbgr.jpg",
+        "https://res.cloudinary.com/dl9889wtn/image/upload/v1715965817/img_pejvte.jpg",
+        "https://res.cloudinary.com/dl9889wtn/image/upload/v1715965738/maxresdefault_apdzrk.jpg",
         "https://res.cloudinary.com/dvmczcg3f/image/upload/v1711649108/colal-jpg_jzmskc.jpg",
         "https://res.cloudinary.com/dvmczcg3f/image/upload/v1711416478/CourseQuest%20-%20App/circuit_board_pic_kgsrqb.jpg",
         "https://res.cloudinary.com/dvmczcg3f/image/upload/v1706632712/Daily%20Spark%20-%20Landing%20Page%20Landscape%20Photos/vibrant-orange-landscape-of-sand-dunes-and-trees_e96ilu.jpg",
@@ -96,11 +96,68 @@ const Recycling = () => {
                         </div>
                         <hr className="flex border-2 border-slate-900 mx-5 rounded" />
                         <div className="p-5">
+                            Paper Recycling Receptacles
                             <ul>
                                 <li>Paper</li>
-                                <li>Glass</li>
+                                <ul>
+                                    <li>newspapers</li>
+                                    <li>magazines</li>
+                                    <li>White and Colored Paper (staples are ok)</li>
+                                    <li>Envelopes</li>
+                                    <li>Wrapping paper</li>
+                                    <li>Paperback books</li>
+                                    <li>Hardcover books with the covers removed</li>
+                                    <li>Notebooks with metal or plastic binding removed</li>
+                                </ul>
+                                <li>Cardboard</li>
+                                <ul>
+                                    <li>Corrugated carboard</li>
+                                    <li>Shipping, shoe, and gift boxes</li>
+                                    <li>File folders</li>
+                                    <li>Paper cups that have been emptied and dried</li>
+                                    <li>lightly soiled pizza boxes</li>
+                                </ul>
+                                <li>Note: Beverage and liquid food cartons (like milk cartons and juice boxes) should be recycled with metal, glass, and plastic, NOT with paper.</li>
+                            </ul>
+                            Metal, Glass, and Plastic, and Cartons Recycling Receptacles
+                            <ul>
                                 <li>Metal</li>
+                                <ul>
+                                    <li>Aluminum foil and trays</li>
+                                    <li>Metal caps and lids</li>
+                                    <li>Empty aerosol and paint cans</li>
+                                    <li>Wire hangers</li>
+                                    <li>Pots and pans</li>
+                                    <li>Metal hardware</li>
+                                </ul>
+                                <li>Glass</li>
+                                <ul>
+                                    <li>Can: glass bottles and jars</li>
+                                    <li>Can't: drinking glasses, eyeglasses, glass furniture, mirrors, light bulbs</li>
+                                </ul>
                                 <li>Plastic</li>
+                                <ul>
+                                    <li>Food and drink containers</li>
+                                    <li>Caps and lids</li>
+                                    <li>Cups and bowls</li>
+                                    <li>Toys with batteries removed</li>
+                                    <li>Consumer packaging</li>
+                                    <li>Acetate Boxes</li>
+                                </ul>
+                                <li>Cartons</li>
+                                You can recycle beverage and liquid food cartons like milk and soup cartons and juice boxes. These are lined with a plastic film to make them leak-proof, and the plastic layer can be removed and recycled.
+                            </ul>
+
+                            Items that CANNOT be recycled and must be thrown in the trash:
+                            <ul>
+                                <li>Heavily soiled paper plates and pizza boxes</li>
+                                <li>Ice cream tubs</li>
+                                <li>Foam</li>
+                                <li>Packing peanuts</li>
+                                <li>Tanglers: Cables, wires, extension cords, string lights, garden hoses, window blinds</li>
+                                <li>Bowling balls and any sports balls</li>
+                                <li>Cassette and VHS tapes</li>
+                                <li>Single-use plastic bags</li>
                             </ul>
                         </div>
                         <div></div>
@@ -130,7 +187,7 @@ const Recycling = () => {
                         <hr className="border-4 border-black mb-10 mx-5 rounded" />
                         <div className="overflow-y-auto h-72 grid gap-4">
                             {filteredSites.map((site) => {
-                                const { site_location, paper_bins, mgp_bins, partner } = site;
+                                const { site_location, partner } = site;
                                 return (
                                     <div key={site_location} className="bg-orange-500 mx-5 rounded-lg px-5 py-7 hover:scale-105 transition-transform duration-300">
                                         {partner === "N/A" ? "" : <p>{partner}</p>}
