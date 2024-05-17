@@ -7,10 +7,17 @@ import { Filter, Recycle } from 'lucide-react';
 
 const Recycling = () => {
     const [recyclingBins, setRecyclingBins] = useState([]);
+    //modal state for filter options: false = hidden, true = visible
+    const [optionsStatus, setOptionsStatus] = useState(false);
+    const [filter, setFilter] = useState(false);
+    const [filteredSites, setFilteredSites] = useState([]);
     useEffect(() => {
         fetch(`https://data.cityofnewyork.us/resource/sxx4-xhzg.json`)
             .then((res) => res.json())
-            .then((data) => { setRecyclingBins(data) });
+            .then((data) => {
+                setRecyclingBins(data)
+                setFilteredSites(data)
+            });
         /**ex: 
          * { dsny_zone: "BKN",
          * mgp_bins: "1",
@@ -21,8 +28,7 @@ const Recycling = () => {
          */
     }, []);
 
-    //modal state for filter options: false = hidden, true = visible
-    const [optionsStatus, setOptionsStatus] = useState(false);
+
     // this usestate sets index of carousel images
     const [currentIndex, setCurrentIndex] = useState(0);
     //this useState sets array of images
@@ -54,6 +60,18 @@ const Recycling = () => {
 
     const displayFilterOptions = () => {
         setOptionsStatus(!optionsStatus);
+    }
+
+    const handleFilterChange = (e) => {
+        const copy = [...recyclingBins]
+        setFilter(e.target.value)
+        if (e.target.value === "paper") {
+            setFilteredSites([...copy.filter((site) => site.paper_bins > 0)])
+        } else if (e.target.value === "mgp") {
+            setFilteredSites([...copy.filter((site) => site.mgp_bins > 0)])
+        } else {
+            setFilteredSites([...copy])
+        }
     }
 
     return (
@@ -104,23 +122,24 @@ const Recycling = () => {
                             Recycling Drop Off Sites
                         </div>
                         <p className="flex justify-end mr-10 mb-2">
-                            {recyclingBins.length} Sites
+                            {filteredSites.length} Sites
                             <button onClick={() => displayFilterOptions()}><Filter /></button>
                         </p>
                         {optionsStatus ?
                             <form className="flex justify-end mr-10 mb-2"
                                 action="">
-                                <select name="" id="">
-                                    <option value="">Paper</option>
-                                    <option value="">Glass</option>
-                                    <option value="">Metal</option>
-                                    <option value="">Plastic</option>
+                                <select name="filter" value={filter} onChange={handleFilterChange}>
+                                    <option value="all" >Any</option>
+                                    <option value="paper">Paper</option>
+                                    <option value="mgp">Glass</option>
+                                    <option value="mgp">Metal</option>
+                                    <option value="mgp">Plastic</option>
                                 </select>
                             </form>
                             : ''}
                         <hr className="border-4 border-black mb-10 mx-5 rounded" />
                         <div className="overflow-y-auto h-72 grid gap-4">
-                            {recyclingBins.map((site) => {
+                            {filteredSites.map((site) => {
                                 const { site_location, paper_bins, mgp_bins, partner } = site;
                                 return (
                                     <div key={site_location} className="bg-orange-500 mx-5 rounded-lg px-5 py-7 hover:scale-105 transition-transform duration-300">
