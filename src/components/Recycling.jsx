@@ -1,13 +1,11 @@
 import { CircleChevronRight, CircleChevronLeft } from "lucide-react";
 import { useState, useEffect } from "react";
-// import { RxCrumpledPaper } from "react-icons/rx";
-// import { GiSquareBottle, GiOpenedFoodCan } from "react-icons/gi";
-import { Filter, Recycle } from 'lucide-react';
+import { Filter } from 'lucide-react';
 
 
 const Recycling = () => {
     const [recyclingBins, setRecyclingBins] = useState([]);
-    //modal state for filter options: false = hidden, true = visible
+    //modal state for filter options: false = hidden, true = visible  
     const [optionsStatus, setOptionsStatus] = useState(false);
     const [filter, setFilter] = useState(false);
     const [filteredSites, setFilteredSites] = useState([]);
@@ -18,14 +16,6 @@ const Recycling = () => {
                 setRecyclingBins(data)
                 setFilteredSites(data)
             });
-        /**ex: 
-         * { dsny_zone: "BKN",
-         * mgp_bins: "1",
-         * paper_bins: "1",
-         * partner: "DCAS",
-         * site_location: "120 SCHERMERHORN ST - INSIDE BUILDING",
-         * site_type: "CITY AGENCY" }
-         */
     }, []);
 
 
@@ -145,12 +135,6 @@ const Recycling = () => {
                                     <div key={site_location} className="bg-orange-500 mx-5 rounded-lg px-5 py-7 hover:scale-105 transition-transform duration-300">
                                         {partner === "N/A" ? "" : <p>{partner}</p>}
                                         <p>{site_location}</p>
-                                        {/* <span>
-                                            {paper_bins > 0 ? <>{<RxCrumpledPaper />}</> : ''}
-                                            {mgp_bins > 0 ? <>{<><GiSquareBottle /> <GiOpenedFoodCan /> </>}</> : ''}
-                                        </span> */}
-                                        {/* <p>paper: {paper_bins}</p>
-                                        <p>metal, plastic, glass: {mgp_bins}</p> */}
                                     </div>
                                 )
                             })}
