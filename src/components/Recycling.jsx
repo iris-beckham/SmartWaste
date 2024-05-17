@@ -2,6 +2,7 @@ import { CircleChevronRight, CircleChevronLeft } from "lucide-react";
 import { useState, useEffect } from "react";
 // import { RxCrumpledPaper } from "react-icons/rx";
 // import { GiSquareBottle, GiOpenedFoodCan } from "react-icons/gi";
+import { Filter, Recycle } from 'lucide-react';
 
 
 const Recycling = () => {
@@ -20,7 +21,8 @@ const Recycling = () => {
          */
     }, []);
 
-
+    //modal state for filter options: false = hidden, true = visible
+    const [optionsStatus, setOptionsStatus] = useState(false);
     // this usestate sets index of carousel images
     const [currentIndex, setCurrentIndex] = useState(0);
     //this useState sets array of images
@@ -50,12 +52,16 @@ const Recycling = () => {
         );
     };
 
+    const displayFilterOptions = () => {
+        setOptionsStatus(!optionsStatus);
+    }
+
     return (
         <div className="min-h-screen mb-0">
             <div className="grid grid-cols-1 md:grid-cols-5 ">
                 <div className="bg-amber-400 col-span-1 md:col-span-3">
                     <div className=" bg-violet-500 m-5 rounded-xl overflow-y-auto h-3/4">
-                        <div className="text-4xl mt-10 mx-5 mb-3">Public Recycling Bins</div>
+                        <div className="text-4xl mt-10 mx-5 mb-3">Public Recycling Bins </div>
                         <hr className="border-4 border-black mb-10 mx-5 rounded" />
                         <div className=" mx-5 rounded-2xl">
                             <div className="flex justify-around">
@@ -95,9 +101,23 @@ const Recycling = () => {
                 <div className="col-span-1 md:col-span-2 bg-emerald-600">
                     <div className="bg-sky-300 m-5 rounded-xl h-2/4">
                         <div className="text-3xl py-7 mx-5 text-center">
-                            Waste Drop Off Sites
+                            Recycling Drop Off Sites
                         </div>
-                        <p className="text-end mb-2 mr-7">{recyclingBins.length} Sites</p>
+                        <p className="flex justify-end mr-10 mb-2">
+                            {recyclingBins.length} Sites
+                            <button onClick={() => displayFilterOptions()}><Filter /></button>
+                        </p>
+                        {optionsStatus ?
+                            <form className="flex justify-end mr-10 mb-2"
+                                action="">
+                                <select name="" id="">
+                                    <option value="">Paper</option>
+                                    <option value="">Glass</option>
+                                    <option value="">Metal</option>
+                                    <option value="">Plastic</option>
+                                </select>
+                            </form>
+                            : ''}
                         <hr className="border-4 border-black mb-10 mx-5 rounded" />
                         <div className="overflow-y-auto h-72 grid gap-4">
                             {recyclingBins.map((site) => {
