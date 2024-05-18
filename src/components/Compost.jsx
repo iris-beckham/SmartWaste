@@ -1,11 +1,16 @@
 import { CircleChevronRight, CircleChevronLeft } from "lucide-react";
 import { useState, useEffect } from "react";
 import CompostSiteCard from "./CompostSiteCard";
+import Geolocation from "./Geolocation";
 
 const URL = import.meta.env.VITE_BASE_API_URL;
+const TOKEN = import.meta.env.VITE_APP_TOKEN;
 
 const Compost = () => {
   const [compostingSites, setCompostingSites] = useState([]);
+  const [currentLocation, setCurrentLocation] = useState({});
+  const [sortedSitesByDistance, setSortedSitesByDistance] = useState([]);
+  const [test, setTest] = useState([]);
   // this usestate sets index of carousel images
   const [currentIndex, setCurrentIndex] = useState(0);
   //this useState sets array of images
@@ -39,19 +44,46 @@ const Compost = () => {
   };
 
   useEffect(() => {
+    const options = {
+      "X-App-Token": TOKEN,
+    };
     fetch(
-      `${URL}?$query=SELECT%20borough%2C%20ntaname%2C%20food_scrap_drop_off_site%2C%20location%2C%20hosted_by%2C%20open_months%2C%20operation_day_hours%2C%20notes%2C%20website%2C%20bin%2C%20latitude%2C%20longitude%2C%20object_id`
+      `${URL}?$query=SELECT%20borough%2C%20ntaname%2C%20food_scrap_drop_off_site%2C%20location%2C%20hosted_by%2C%20open_months%2C%20operation_day_hours%2C%20notes%2C%20website%2C%20bin%2C%20latitude%2C%20longitude%2C%20object_id`,
+      options
     )
       .then((res) => res.json())
-      .then((data) => setCompostingSites(data));
+      .then((data) => {
+        setCompostingSites(data.slice(0, 3));
+      });
+  }, []);
+
+  console.log("Composting", compostingSites);
+  // console.log("Sorted Composting", sortedSitesByDistance);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const userCoords = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        };
+        console.log("Position", userCoords);
+        setCurrentLocation(userCoords);
+      },
+      (error) => {
+        console.error("Error getting the current location:", error);
+      }
+    );
   }, []);
 
   return (
     <div className="min-h-screen mb-0">
+      {" "}
+      {console.log("CurrentLocation", currentLocation)}
       <div className="grid grid-cols-1 md:grid-cols-5 ">
         <div className="bg-amber-400 col-span-1 md:col-span-3">
           <div className=" bg-violet-500 m-5 rounded-xl overflow-y-auto h-3/4">
-            <div className="text-4xl mt-10 mx-5 mb-3">Waste Category</div>
+            <div className="text-4xl mt-10 mx-5 mb-3">Food Scraps</div>
             <hr className="border-4 border-black mb-10 mx-5 rounded" />
             <div className=" mx-5 rounded-2xl">
               <div className="flex justify-around">
@@ -96,15 +128,23 @@ const Compost = () => {
                 <div>Dairy</div>
               </div>
             </div>
-            <div></div>
           </div>
         </div>
         <div className="col-span-1 md:col-span-2 bg-emerald-600">
-          <div className="bg-sky-300 m-5 rounded-xl h-2/4">
+          <div className="bg-sky-300 m-5 rounded-xl">
             <div className="text-3xl py-7 mx-5 text-center">
-              Waste Drop Off Sites
+              Food Scrap Drop Off Sites
             </div>
             <hr className="border-4 border-black mb-10 mx-5 rounded" />
+            <Geolocation
+              compostingSites={compostingSites}
+              currentLocation={currentLocation}
+              setCurrentLocation={setCurrentLocation}
+              sortedSitesByDistance={sortedSitesByDistance}
+              setSortedSitesByDistance={setSortedSitesByDistance}
+              test={test}
+              setTest={setTest}
+            />
             <div>
               {/* //THIS ONE! */}
               <div className="overflow-y-auto h-72 grid gap-4">
