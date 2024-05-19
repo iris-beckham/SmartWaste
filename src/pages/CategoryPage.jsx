@@ -1,13 +1,13 @@
-import React from "react";
 import SpecialWaste from "../components/SpecialWasteDropOff";
+import Compost from "../components/Compost";
+import SharpsCategory from "../components/SharpsCategory";
 
 const CategoryPage = () => {
   return (
     <div>
-      <div className="text-3xl text-green-400 bg-green-900 py-14">
-        Here Will be Categories
-      </div>
       <SpecialWaste />
+      <Compost />
+      <SharpsCategory />
     </div>
   );
 };
