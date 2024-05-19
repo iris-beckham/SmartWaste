@@ -103,8 +103,7 @@ const SharpsCategory = () => {
                   <ul className="list-disc px-5 py-1">
                     <li>Medication</li>
                     <li>
-                      Radtioactive Material & Excretions From Radiation
-                      Patients:
+                      Radioactive Material & Excretions From Radiation Patients:
                       <ul className="list-disc px-5 py-1">
                         <li>Tissues</li>
                         <li>Diapers</li>
@@ -118,11 +117,21 @@ const SharpsCategory = () => {
           </div>
         </div>
         <div className="col-span-1 md:col-span-2 bg-white">
-          <div className="bg-black m-5 rounded-xl">
+          <div className="bg-black m-5 rounded-xl h-3/4">
             <div className="text-3xl py-7 mx-5 text-center text-white">
               Waste Drop Off Sites
             </div>
             <hr className="border-4 border-white mb-10 mx-5 rounded" />
+            <div>
+              {/* <Geolocation
+                data={compostingSites}
+                currentLocation={currentLocation}
+                setSortedSitesByDistance={setSortedSitesByDistance}
+              /> */}
+              <div className="text-center text-white ml-auto mr-5 text-lg font-bold py-3">
+                {allSharpsAndMedicalDropOffLocations.length} Locations
+              </div>
+            </div>
             <div className="overflow-y-auto h-72 grid gap-4 hover:overflow-scroll">
               {/* //THIS ONE! */}
               {allSharpsAndMedicalDropOffLocations.map((location) => (
@@ -146,9 +155,6 @@ const SharpsCategory = () => {
                   </div>
                 </div>
               ))}
-            </div>
-            <div className="text-center py-5 text-white">
-              {allSharpsAndMedicalDropOffLocations.length - 1} Locations
             </div>
           </div>
         </div>

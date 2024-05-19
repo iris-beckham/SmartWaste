@@ -46,38 +46,40 @@ const NavBar = () => {
           >
             About
           </Link>
-          <button
+          <Link
+            to={"/composting"}
             disabled={collapsed}
             className={`bg-green-300 py-6 hover:bg-black hover:text-white font-semibold text-center ${
               collapsed ? "hidden" : ""
             }`}
           >
             Composting
-          </button>
-          <button
+          </Link>
+          <Link
             disabled={collapsed}
             className={`bg-amber-300 py-6 hover:bg-black hover:text-white font-semibold text-center ${
               collapsed ? "hidden" : ""
             }`}
           >
             Special & E-Waste
-          </button>
-          <button
+          </Link>
+          <Link
+            to={"sharps_and_medical"}
             disabled={collapsed}
             className={`bg-red-300 py-6 hover:bg-black hover:text-white font-semibold text-center ${
               collapsed ? "hidden" : ""
             }`}
           >
             Sharps & Medical Waste
-          </button>
-          <button
+          </Link>
+          <Link
             disabled={collapsed}
             className={`bg-blue-300 py-6 hover:bg-black hover:text-white font-semibold text-center ${
               collapsed ? "hidden" : ""
             }`}
           >
             Recycling
-          </button>
+          </Link>
           <Link
             to={"/meet_the_team"}
             disabled={collapsed}
