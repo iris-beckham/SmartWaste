@@ -1,22 +1,3 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-
-// function ToxicWasteDropOff() {
-//     const [wasteDropOffCenters, setWasteDropOffCenters] = useState([])
-
-//     useEffect(() => {
-//         fetch("https://data.cityofnewyork.us/resource/242c-ru4i.json")
-//         .then((res) => res.json())
-//         .then((data) => setWasteDropOffCenters(data))
-//     },[])
-
-//   return (
-//     <div></div>
-//   )
-// }
-
-// export default ToxicWasteDropOff
-
 
 import { CircleChevronRight, CircleChevronLeft } from "lucide-react";
 import React from "react";
@@ -128,7 +109,7 @@ const SpecialWaste = () => {
             </div>
             <hr className="border-4 border-black mb-10 mx-5 rounded" />
             <div className="overflow-y-auto h-72 grid gap-4">
-              {wasteDropOffCenters.map((loc) => <SWlocationsCard />)}
+              {wasteDropOffCenters.map((loc) => <SWlocationsCard loc={loc}/>)}
             </div>
           </div>
         </div>

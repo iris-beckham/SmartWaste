@@ -1,14 +1,16 @@
 import React from 'react'
 
-function SWlocationsCard(
-    name,
-    address,
-    city,
-    type,
-    zip
-) {
+function SWlocationsCard({ loc }) {
+    const {
+        name,
+        city,
+        address,
+        type,
+        zip
+    } = loc
+
   return (
-    <div>
+    <div className="bg-orange-500 mx-5 rounded-lg px-5 py-7 hover:scale-105 transition-transform duration-300">
       <div>Name: {name}</div>
       <div>City: {address}</div>
       <div>Address: {city}</div>

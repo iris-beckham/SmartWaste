@@ -1,5 +1,5 @@
 import React from "react";
-import CategoryTemplate from "../components/CategoryTemplate";
+import SpecialWaste from "../components/SpecialWasteDropOff";
 
 const CategoryPage = () => {
   return (
@@ -7,7 +7,7 @@ const CategoryPage = () => {
       <div className="text-3xl text-green-400 bg-green-900 py-14">
         Here Will be Categories
       </div>
-      <CategoryTemplate />
+      <SpecialWaste />
     </div>
   );
 };
