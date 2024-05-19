@@ -1,13 +1,13 @@
 import React from "react";
 import CategoryTemplate from "../components/CategoryTemplate";
+import SharpsCategory from "../components/SharpsCategory";
 
 const CategoryPage = () => {
   return (
     <div>
-      <div className="text-3xl text-green-400 bg-green-900 py-14">
-        Here Will be Categories
-      </div>
-      <CategoryTemplate />
+      {/* <div className="text-4xl text-white bg-black py-10 pl-10">Waste Hub</div> */}
+      {/* <CategoryTemplate /> */}
+      <SharpsCategory />
     </div>
   );
 };
