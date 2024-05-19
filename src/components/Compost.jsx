@@ -135,11 +135,16 @@ const Compost = () => {
               Food Scrap Drop Off Sites
             </div>
             <hr className="border-4 border-white mb-5 mx-5 rounded" />
-            <Geolocation
-              data={compostingSites}
-              currentLocation={currentLocation}
-              setSortedSitesByDistance={setSortedSitesByDistance}
-            />
+            <div className="flex">
+              <Geolocation
+                data={compostingSites}
+                currentLocation={currentLocation}
+                setSortedSitesByDistance={setSortedSitesByDistance}
+              />{" "}
+              <div className="text-center text-white ml-auto mr-5 text-lg font-bold py-3">
+                {compostingSites.length} Locations
+              </div>
+            </div>
             <div className="overflow-y-auto h-72 grid gap-4">
               {compostingSites.length > 0 && sortedSitesByDistance.length === 0
                 ? compostingSites.map((site) => (
