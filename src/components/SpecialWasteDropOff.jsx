@@ -1,8 +1,7 @@
-
 import { CircleChevronRight, CircleChevronLeft } from "lucide-react";
 import React from "react";
 import { useState, useEffect } from "react";
-import SWlocationsCard from './SWlocationsCard';
+import SWlocationsCard from "./SWlocationsCard";
 
 const SpecialWaste = () => {
   // this usestate sets index of carousel images
@@ -34,13 +33,13 @@ const SpecialWaste = () => {
     );
   };
 
-  const [wasteDropOffCenters, setWasteDropOffCenters] = useState([])
+  const [wasteDropOffCenters, setWasteDropOffCenters] = useState([]);
 
-    useEffect(() => {
-        fetch("https://data.cityofnewyork.us/resource/242c-ru4i.json")
-        .then((res) => res.json())
-        .then((data) => setWasteDropOffCenters(data))
-    },[])
+  useEffect(() => {
+    fetch("https://data.cityofnewyork.us/resource/242c-ru4i.json")
+      .then((res) => res.json())
+      .then((data) => setWasteDropOffCenters(data));
+  }, []);
 
   return (
     <div className="min-h-screen mb-0">
@@ -72,35 +71,44 @@ const SpecialWaste = () => {
             <div className="text-3xl mx-5 mt-10">
               What Can & What Can't Be Dropped Off
             </div>
-            <div className="p-5">
-              <div className="text-2xl">Can:</div>
-              <div>
-                <div>Automotive Batteries</div>
-                <div>Batteries</div>
-                <div>Electronics</div>
-                <div>Fluorescent Tubes & CFLs</div>
-                <div>Motor Oil & Transmission Fluid</div>
-                <div>Paint Latex-Based</div>
-                <div>Thermostats & Thermometers</div>
-                <div>Tires</div>
+            <hr className="flex border-2 border-slate-900 mx-5 rounded" />
+            <div className="p-5 grid grid-cols-2">
+              <div className="w-3/4">
+                <h3 className="text-2xl">Can:</h3>
+                <div className="border-2 border-black rounded-lg">
+                  <ul className="list-disc px-5 py-1">
+                    <li>Automotive Batteries</li>
+                    <li>Batteries</li>
+                    <li>Electronics</li>
+                    <li>Fluorescent Tubes & CFLs</li>
+                    <li>Motor Oil & Transmission Fluid</li>
+                    <li>Paint Latex-Based</li>
+                    <li>Thermostats & Thermometers</li>
+                    <li>Tires</li>
+                  </ul>
+                </div>
               </div>
-              <div className="text-2xl">Can't:</div>
-              <div>
-                <div>Appliances</div>
-                <div>Appliances with CFCs</div>
-                <div>Asbestos</div>
-                <div>Cleaning Products</div>
-                <div>Gas Cylinders</div>
-                <div>Lawn & Garden Care Products</div>
-                <div>Medical Waste</div>
-                <div>Paint-Oil-Based</div>
-                <div>Pest Control</div>
-                <div>Asbestos</div>
-                <div>Asbestos</div>
+              <div className="w-3/4">
+                <h3 className="text-2xl">Can't:</h3>
+                <div className="border-2 border-black rounded-lg">
+                  <ul className="list-disc px-5 py-1">
+                    <li>Appliances</li>
+                    <li>Appliances with CFCs</li>
+                    <li>Asbestos</li>
+                    <li>Cleaning Products</li>
+                    <li>Gas Cylinders</li>
+                    <li>Lawn & Garden Care Products</li>
+                    <li>Medical Waste</li>
+                    <li>Paint-Oil-Based</li>
+                    <li>Pest Control</li>
+                    <li>Asbestos</li>
+                    <li>Asbestos</li>
+                  </ul>
+                </div>
               </div>
             </div>
             <hr className="flex border-2 border-slate-900 mx-5 rounded" />
-           </div>
+          </div>
         </div>
         <div className="col-span-1 md:col-span-2 bg-emerald-600">
           <div className="bg-sky-300 m-5 rounded-xl h-2/4">
@@ -109,7 +117,9 @@ const SpecialWaste = () => {
             </div>
             <hr className="border-4 border-black mb-10 mx-5 rounded" />
             <div className="overflow-y-auto h-72 grid gap-4">
-              {wasteDropOffCenters.map((loc) => <SWlocationsCard loc={loc}/>)}
+              {wasteDropOffCenters.map((loc) => (
+                <SWlocationsCard loc={loc} />
+              ))}
             </div>
           </div>
         </div>

@@ -56,6 +56,7 @@ const NavBar = () => {
             Composting
           </Link>
           <Link
+            to={"special_waste"}
             disabled={collapsed}
             className={`bg-amber-300 py-6 hover:bg-black hover:text-white font-semibold text-center ${
               collapsed ? "hidden" : ""
@@ -103,7 +104,7 @@ const NavBar = () => {
         //   className="fixed bottom-4 left-4 bg-black text-white p-2 rounded-full border-4 border-solid border-red-300"
         className="fixed bottom-5 left-5 bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold p-1 rounded-xl"
       >
-        <span class="flex w-full bg-gray-900 text-white rounded-lg p-2">
+        <span className="flex w-full bg-gray-900 text-white rounded-lg p-2">
           Toggle Nav
         </span>
       </button>

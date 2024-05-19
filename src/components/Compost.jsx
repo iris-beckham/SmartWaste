@@ -43,12 +43,8 @@ const Compost = () => {
   };
 
   useEffect(() => {
-    const options = {
-      "X-App-Token": TOKEN,
-    };
     fetch(
-      `${URL}?$query=SELECT%20borough%2C%20ntaname%2C%20food_scrap_drop_off_site%2C%20location%2C%20hosted_by%2C%20open_months%2C%20operation_day_hours%2C%20notes%2C%20website%2C%20bin%2C%20latitude%2C%20longitude%2C%20object_id`,
-      options
+      `https://data.cityofnewyork.us/resource/if26-z6xq.json?$query=SELECT%20borough%2C%20ntaname%2C%20food_scrap_drop_off_site%2C%20location%2C%20hosted_by%2C%20open_months%2C%20operation_day_hours%2C%20notes%2C%20website%2C%20bin%2C%20latitude%2C%20longitude%2C%20object_id`
     )
       .then((res) => res.json())
       .then((data) => setCompostingSites(data));
@@ -103,7 +99,7 @@ const Compost = () => {
             <div className="p-5 grid grid-cols-2">
               <div className="w-3/4">
                 <h3 className="text-2xl">Can:</h3>
-                <div className="border-2 border-black">
+                <div className="border-2 border-black rounded-lg">
                   <ul className="list-disc px-5 py-1">
                     <li>Fruits</li>
                     <li>Vegetables</li>
@@ -118,7 +114,7 @@ const Compost = () => {
               </div>
               <div className="w-3/4">
                 <h3 className="text-2xl">Can't:</h3>
-                <div className="border-2 border-black">
+                <div className="border-2 border-black rounded-lg">
                   <ul className="list-disc px-5 py-1">
                     <li>Meat</li>
                     <li>Bones</li>
@@ -140,7 +136,7 @@ const Compost = () => {
                 data={compostingSites}
                 currentLocation={currentLocation}
                 setSortedSitesByDistance={setSortedSitesByDistance}
-              />{" "}
+              />
               <div className="text-center text-white ml-auto mr-5 text-lg font-bold py-3">
                 {compostingSites.length} Locations
               </div>
