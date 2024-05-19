@@ -10,10 +10,9 @@ const Compost = () => {
   const [compostingSites, setCompostingSites] = useState([]);
   const [currentLocation, setCurrentLocation] = useState({});
   const [sortedSitesByDistance, setSortedSitesByDistance] = useState([]);
-  const [test, setTest] = useState([]);
   // this usestate sets index of carousel images
   const [currentIndex, setCurrentIndex] = useState(0);
-  //this useState sets array of images
+
   const imagesArrayUrls = [
     "https://res.cloudinary.com/dnqfg86zq/image/upload/v1715910744/iyeuenoyhbrhdlurc6vu.jpg",
     "https://res.cloudinary.com/dnqfg86zq/image/upload/v1715910792/xc1vdrupxx5j3a5kyw9c.jpg",
@@ -52,13 +51,8 @@ const Compost = () => {
       options
     )
       .then((res) => res.json())
-      .then((data) => {
-        setCompostingSites(data.slice(0, 3));
-      });
+      .then((data) => setCompostingSites(data));
   }, []);
-
-  console.log("Composting", compostingSites);
-  // console.log("Sorted Composting", sortedSitesByDistance);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -67,7 +61,6 @@ const Compost = () => {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
         };
-        console.log("Position", userCoords);
         setCurrentLocation(userCoords);
       },
       (error) => {
@@ -78,11 +71,9 @@ const Compost = () => {
 
   return (
     <div className="min-h-screen mb-0">
-      {" "}
-      {console.log("CurrentLocation", currentLocation)}
       <div className="grid grid-cols-1 md:grid-cols-5 ">
-        <div className="bg-amber-400 col-span-1 md:col-span-3">
-          <div className=" bg-violet-500 m-5 rounded-xl overflow-y-auto h-3/4">
+        <div className="bg-white col-span-1 md:col-span-3">
+          <div className=" bg-green-300 m-5 rounded-xl overflow-y-auto h-3/4">
             <div className="text-4xl mt-10 mx-5 mb-3">Food Scraps</div>
             <hr className="border-4 border-black mb-10 mx-5 rounded" />
             <div className=" mx-5 rounded-2xl">
@@ -109,49 +100,54 @@ const Compost = () => {
               What Can & What Can't Be Dropped Off
             </div>
             <hr className="flex border-2 border-slate-900 mx-5 rounded" />
-            <div className="p-5">
-              <div className="text-2xl">Can:</div>
-              <div>
-                <div>Fruits</div>
-                <div>Vegetables</div>
-                <div>Eggshells</div>
-                <div>Coffee grounds/tea bags</div>
-                <div>Bread</div>
-                <div>Rice</div>
-                <div>Pasta</div>
-                <div>Leaf and yard waste/houseplants</div>
+            <div className="p-5 grid grid-cols-2">
+              <div className="w-3/4">
+                <h3 className="text-2xl">Can:</h3>
+                <div className="border-2 border-black">
+                  <ul className="list-disc px-5 py-1">
+                    <li>Fruits</li>
+                    <li>Vegetables</li>
+                    <li>Eggshells</li>
+                    <li>Coffee grounds/tea bags</li>
+                    <li>Bread</li>
+                    <li>Rice</li>
+                    <li>Pasta</li>
+                    <li>Leaf and yard waste/houseplants</li>
+                  </ul>
+                </div>
               </div>
-              <div className="text-2xl">Can't:</div>
-              <div>
-                <div>Meat</div>
-                <div>Bones</div>
-                <div>Dairy</div>
+              <div className="w-3/4">
+                <h3 className="text-2xl">Can't:</h3>
+                <div className="border-2 border-black">
+                  <ul className="list-disc px-5 py-1">
+                    <li>Meat</li>
+                    <li>Bones</li>
+                    <li>Dairy</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="col-span-1 md:col-span-2 bg-emerald-600">
-          <div className="bg-sky-300 m-5 rounded-xl">
-            <div className="text-3xl py-7 mx-5 text-center">
+        <div className="col-span-1 md:col-span-2 bg-white ">
+          <div className="bg-black m-5 rounded-xl h-3/4">
+            <div className="text-3xl py-7 mx-5 text-center text-white">
               Food Scrap Drop Off Sites
             </div>
-            <hr className="border-4 border-black mb-10 mx-5 rounded" />
+            <hr className="border-4 border-white mb-5 mx-5 rounded" />
             <Geolocation
-              compostingSites={compostingSites}
+              data={compostingSites}
               currentLocation={currentLocation}
-              setCurrentLocation={setCurrentLocation}
-              sortedSitesByDistance={sortedSitesByDistance}
               setSortedSitesByDistance={setSortedSitesByDistance}
-              test={test}
-              setTest={setTest}
             />
-            <div>
-              {/* //THIS ONE! */}
-              <div className="overflow-y-auto h-72 grid gap-4">
-                {compostingSites.map((site) => (
-                  <CompostSiteCard key={site.object_id} site={site} />
-                ))}
-              </div>
+            <div className="overflow-y-auto h-72 grid gap-4">
+              {compostingSites.length > 0 && sortedSitesByDistance.length === 0
+                ? compostingSites.map((site) => (
+                    <CompostSiteCard key={site.object_id} site={site} />
+                  ))
+                : sortedSitesByDistance.map((site) => (
+                    <CompostSiteCard key={site.coord.object_id} site={site} />
+                  ))}
             </div>
           </div>
         </div>

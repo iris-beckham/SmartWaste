@@ -1,56 +1,33 @@
-import { useEffect, useState } from "react";
 import { orderByDistance, getDistance } from "geolib";
 
-const Geolocation = ({
-  compostingSites,
-  sortedSitesByDistance,
-  setSortedSitesByDistance,
-  currentLocation,
-  setCurrentLocation,
-  test,
-  setTest,
-}) => {
+const Geolocation = ({ data, setSortedSitesByDistance, currentLocation }) => {
   const handleSort = async () => {
-    const latLongArr = compostingSites.map((site) => {
+    const findDistances = data.map((coord) => {
       return {
-        [site.object_id]: {
-          latitude: site.latitude,
-          longitude: site.longitude,
-        },
+        latitude: coord.latitude,
+        longitude: coord.longitude,
+        coord,
+        distance: getDistance(currentLocation, coord),
       };
     });
 
+    // console.log("DISTANCE", findDistances);
+
     const sortedLatAndLongArrAscendingByDistance = orderByDistance(
       currentLocation,
-      Object.values(latLongArr)
+      findDistances
     );
-
-    console.log("COORD", currentLocation);
-    console.log(
-      "DISTANCE",
-      latLongArr.map((coord, idx) => {
-        return {
-          id: Object.keys(coord)[0],
-          ["distance"]: getDistance(currentLocation, Object.values(coord)[0]),
-        };
-      })
-    );
-
-    console.log("Sorted", sortedLatAndLongArrAscendingByDistance);
-    // const copiedCompostingSites = [...compostingSites];
-    // setSortedSitesByDistance(
-    //   copiedCompostingSites.sort((a, b) => {
-    //     return (
-    //       sortedLatAndLongArrAscendingByDistance.indexOf(a.object_id) -
-    //       sortedLatAndLongArrAscendingByDistance.indexOf(b.object_id)
-    //     );
-    //   })
-    // );
+    await setSortedSitesByDistance(sortedLatAndLongArrAscendingByDistance);
   };
 
   return (
     <div>
-      <button onClick={handleSort}>Sort by distance</button>
+      <button
+        className="text-black mb-5 ml-5 hover:bg-green-300 bg-white p-3 rounded-lg font-bold"
+        onClick={handleSort}
+      >
+        Sort by distance
+      </button>
     </div>
   );
 };
