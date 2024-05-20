@@ -132,7 +132,7 @@ const SpecialWaste = () => {
             <div className="text-3xl py-7 mx-5 text-center text-white">
               SpecialWaste Drop Off Sites
             </div>
-            <hr className="border-4 border-white mb-10 mx-5 rounded" />
+            <hr className="border-4 border-white mb-5 mx-5 rounded" />
             <div className="flex">
               <Geolocation
                 data={wasteDropOffCenters}
