@@ -58,8 +58,8 @@ const Recycling = () => {
             <div className="grid grid-cols-1 md:grid-cols-5 ">
                 <RecyclingDosAndDonts />
 
-                <div className="col-span-1 md:col-span-2 bg-sky-300">
-                    <div className="bg-black m-5 rounded-xl">
+                <div className="col-span-1 md:col-span-2 ">
+                    <div className="bg-black m-5 rounded-xl ">
                         <div className="text-3xl text-white py-7 mx-5 text-center">
                             Recycling Drop Off Sites
                         </div>
