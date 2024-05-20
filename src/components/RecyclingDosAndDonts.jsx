@@ -8,11 +8,14 @@ const RecyclingDosAndDonts = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     //this useState sets array of images
     const imagesArrayUrls = [
-        "https://res.cloudinary.com/dl9889wtn/image/upload/v1715965817/img_pejvte.jpg",
+        // "https://res.cloudinary.com/dl9889wtn/image/upload/v1715965817/img_pejvte.jpg",
         "https://res.cloudinary.com/dl9889wtn/image/upload/v1715965738/maxresdefault_apdzrk.jpg",
-        "https://res.cloudinary.com/dvmczcg3f/image/upload/v1711649108/colal-jpg_jzmskc.jpg",
-        "https://res.cloudinary.com/dvmczcg3f/image/upload/v1711416478/CourseQuest%20-%20App/circuit_board_pic_kgsrqb.jpg",
-        "https://res.cloudinary.com/dvmczcg3f/image/upload/v1706632712/Daily%20Spark%20-%20Landing%20Page%20Landscape%20Photos/vibrant-orange-landscape-of-sand-dunes-and-trees_e96ilu.jpg",
+        "https://res.cloudinary.com/dl9889wtn/image/upload/v1716206788/bigstock-Recyclable-Materials-A-Select-364185454-1-825x510_q3gmoc.jpg",
+        "https://res.cloudinary.com/dl9889wtn/image/upload/v1716206377/ghows-PJ-3530caa6-cb6f-4a83-e053-0100007f7d97-e82199ad_kgyoyk.jpg",
+        "https://res.cloudinary.com/dl9889wtn/image/upload/v1716206884/Post-Consumer-Plastik-Abfall_bgdnff.jpg",
+        "https://res.cloudinary.com/dl9889wtn/image/upload/v1716205816/Glass_20Jars-no_20drop_20shadow_slptlo.png",
+        "https://res.cloudinary.com/dl9889wtn/image/upload/v1716205969/CC_FB_Cartons_1200x630_ubmrrf.jpg",
+        "https://res.cloudinary.com/dl9889wtn/image/upload/v1716205472/simplesort-16gal-05NYC_x8ol6x.jpg",
     ];
 
     const goToPreviousImage = () => {
