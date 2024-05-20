@@ -34,8 +34,8 @@ const RecyclingDosAndDonts = () => {
     };
     return (
         <>
-            <div className="bg-amber-400 col-span-1 md:col-span-3">
-                <div className=" bg-violet-500 m-5 rounded-xl overflow-y-auto h-3/4">
+            <div className="bg-sky-300 col-span-1 md:col-span-3">
+                <div className="bg-sky-700 m-5 rounded-xl overflow-y-auto h-3/4 text-sky-100">
                     <div className="text-4xl mt-10 mx-5 mb-3">Public Recycling Bins </div>
                     <hr className="border-4 border-black mb-10 mx-5 rounded" />
 
