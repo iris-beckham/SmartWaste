@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 
 const Mission = () => {
   return (
-    <div className="p-5 bg-black">
+    <div className="p-5">
       <div className="flex flex-col items-center justify-center">
-        <div className="max-w-3xl px-8 py-12 bg-white shadow-lg rounded-xl">
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-8">
+        <div className="max-w-3xl px-8 py-12 bg-black shadow-lg rounded-xl">
+          <h1 className="text-4xl md:text-5xl font-bold text-center text-white mb-8">
             Our Mission
           </h1>
-          <p className="text-lg md:text-xl text-center mb-6">
+          <p className="text-lg md:text-xl text-center text-white mb-6">
             At Smart Waste, we are dedicated to revolutionizing waste management
             in New York City by providing conscious solutions tailored to the
             needs of residents who prioritize sustainability and environmental
@@ -25,11 +25,11 @@ const Mission = () => {
             Contact Us
           </Link> */}
         </div>
-        <div className="max-w-3xl px-8 pt-12 pb-6 mb-10 mt-5 bg-white shadow-lg rounded-xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+        <div className="max-w-3xl px-8 pt-12 pb-6 mb-10 mt-5 bg-black shadow-lg rounded-xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-8">
             Tools and Resources
           </h2>
-          <p className="text-lg md:text-xl text-center mb-8">
+          <p className="text-lg md:text-xl text-center text-white mb-8">
             At Smart Waste, we pride ourselves on harnessing cutting-edge
             technology and leveraging valuable resources to empower New York
             City residents in conscious waste management. Our platform has been
@@ -37,7 +37,7 @@ const Mission = () => {
             OpenData NYC API, allowing us to provide real-time insights and
             solutions tailored to the unique needs of NYC neighborhoods.
           </p>
-          <p className="text-lg md:text-xl text-center mb-8">
+          <p className="text-lg md:text-xl text-center text-white mb-8">
             With the combined power of OpenData NYC and DSNY resources, we've
             developed a robust platform that enables users to make informed
             decisions about waste disposal, locate waste disposal centers, and
