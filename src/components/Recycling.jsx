@@ -58,12 +58,12 @@ const Recycling = () => {
             <div className="grid grid-cols-1 md:grid-cols-5 ">
                 <RecyclingDosAndDonts />
 
-                <div className="col-span-1 md:col-span-2 bg-sky-600">
-                    <div className="bg-sky-300 m-5 rounded-xl">
-                        <div className="text-3xl py-7 mx-5 text-center">
+                <div className="col-span-1 md:col-span-2 bg-sky-300">
+                    <div className="bg-black m-5 rounded-xl">
+                        <div className="text-3xl text-white py-7 mx-5 text-center">
                             Recycling Drop Off Sites
                         </div>
-                        <p className="flex justify-end mr-10 mb-2">
+                        <p className="flex justify-end mr-10 mb-2 text-white">
                             {filteredSites.length} Sites
                             <button onClick={() => displayFilterOptions()}><Filter /></button>
                         </p>
@@ -86,16 +86,16 @@ const Recycling = () => {
                                         <option value="QW">Queens West</option>
                                         <option value="SI">Staten Island</option>
                                     </select>
-                                    <button type="submit">Apply Filters</button>
+                                    <button className="text-white" type="submit">Apply Filters</button>
                                 </form>
                             </div>
                             : ''}
-                        <hr className="border-4 border-black mb-10 mx-5 rounded" />
+                        <hr className="border-4 border-white mb-10 mx-5 rounded" />
                         <div className="overflow-y-auto h-72 grid gap-4">
                             {filteredSites.map((site) => {
                                 const { site_location, partner, dsny_zone, paper_bins, mgp_bins, site_type } = site;
                                 return (
-                                    <div key={site_location + mgp_bins + paper_bins + site_type} className="bg-emerald-500 mx-5 rounded-lg px-5 py-7 hover:scale-105 transition-transform duration-300">
+                                    <div key={site_location + mgp_bins + paper_bins + site_type} className="bg-sky-300 mx-5 rounded-lg px-5 py-7 hover:scale-105 transition-transform duration-300">
                                         {partner === "N/A" ? "" : <p>{capitalizeFirstLetters(partner)}</p>}
                                         <p>{capitalizeFirstLetters(site_location)}</p>
                                     </div>

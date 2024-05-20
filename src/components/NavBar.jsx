@@ -20,15 +20,13 @@ const NavBar = () => {
         //   width: "100%",
         //   height: "100vh",
         // }}
-        className={`bg-black/90 rounded-xl flex flex-col h-full ${
-          collapsed ? "w-0" : "w-64"
-        } transition-all duration-300 ease-in-out`}
+        className={`bg-black/90 rounded-xl flex flex-col h-full ${collapsed ? "w-0" : "w-64"
+          } transition-all duration-300 ease-in-out`}
       >
         <Link
           to={"/"}
-          className={`py-6 text-center rounded-t-xl bg-black text-3xl text-white font-semibold  ${
-            collapsed ? "hidden" : ""
-          }`}
+          className={`py-6 text-center rounded-t-xl bg-black text-3xl text-white font-semibold  ${collapsed ? "hidden" : ""
+            }`}
         >
           <span className="text-green-300">S</span>
           <span className="text-amber-300">m</span>
@@ -40,60 +38,54 @@ const NavBar = () => {
           <Link
             to={"/about_smart_waste"}
             disabled={collapsed}
-            className={`bg-white py-6 hover:bg-black hover:text-white font-semibold text-center ${
-              collapsed ? "hidden" : ""
-            }`}
+            className={`bg-white py-6 hover:bg-black hover:text-white font-semibold text-center ${collapsed ? "hidden" : ""
+              }`}
           >
             About
           </Link>
           <Link
             to={"/composting"}
             disabled={collapsed}
-            className={`bg-green-300 py-6 hover:bg-black hover:text-white font-semibold text-center ${
-              collapsed ? "hidden" : ""
-            }`}
+            className={`bg-green-300 py-6 hover:bg-black hover:text-white font-semibold text-center ${collapsed ? "hidden" : ""
+              }`}
           >
             Composting
           </Link>
           <Link
             to={"special_waste"}
             disabled={collapsed}
-            className={`bg-amber-300 py-6 hover:bg-black hover:text-white font-semibold text-center ${
-              collapsed ? "hidden" : ""
-            }`}
+            className={`bg-amber-300 py-6 hover:bg-black hover:text-white font-semibold text-center ${collapsed ? "hidden" : ""
+              }`}
           >
             Special & E-Waste
           </Link>
           <Link
             to={"sharps_and_medical"}
             disabled={collapsed}
-            className={`bg-red-300 py-6 hover:bg-black hover:text-white font-semibold text-center ${
-              collapsed ? "hidden" : ""
-            }`}
+            className={`bg-red-300 py-6 hover:bg-black hover:text-white font-semibold text-center ${collapsed ? "hidden" : ""
+              }`}
           >
             Sharps & Medical Waste
           </Link>
           <Link
+            to={"/recycling"}
             disabled={collapsed}
-            className={`bg-blue-300 py-6 hover:bg-black hover:text-white font-semibold text-center ${
-              collapsed ? "hidden" : ""
-            }`}
+            className={`bg-blue-300 py-6 hover:bg-black hover:text-white font-semibold text-center ${collapsed ? "hidden" : ""
+              }`}
           >
             Recycling
           </Link>
           <Link
             to={"/meet_the_team"}
             disabled={collapsed}
-            className={`bg-purple-300 py-6 hover:bg-black hover:text-white font-semibold text-center ${
-              collapsed ? "hidden" : ""
-            }`}
+            className={`bg-purple-300 py-6 hover:bg-black hover:text-white font-semibold text-center ${collapsed ? "hidden" : ""
+              }`}
           >
             The Team
           </Link>
           <div
-            className={`text-white text-center mt-9 ${
-              collapsed ? "hidden" : ""
-            }`}
+            className={`text-white text-center mt-9 ${collapsed ? "hidden" : ""
+              }`}
           >
             &copy; 2024 Smart Waste Inc.
           </div>

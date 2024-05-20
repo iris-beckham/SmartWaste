@@ -7,6 +7,7 @@ import AboutTheApp from "./pages/AboutTheApp";
 import CompostingPage from "./pages/CompostingPage";
 import SharpsPage from "./pages/SharpsPage";
 import SpecialWastePage from "./pages/SpecialWastePage";
+import RecyclingPage from "./pages/RecyclingPage";
 
 const App = () => {
   return (
@@ -18,7 +19,7 @@ const App = () => {
         <Route path="/composting" element={<CompostingPage />} />
         <Route path="/sharps_and_medical" element={<SharpsPage />} />
         <Route path="/special_waste" element={<SpecialWastePage />} />
-        {/* <Route path="/recycling" element={<RecyclingPage />} /> */}
+        <Route path="/recycling" element={<RecyclingPage />} />
         <Route path="/meet_the_team" element={<AboutTheDevs />} />
       </Routes>
     </>

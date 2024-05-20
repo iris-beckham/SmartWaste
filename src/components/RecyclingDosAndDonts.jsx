@@ -69,8 +69,9 @@ const RecyclingDosAndDonts = () => {
                     <h2 className='text-2xl text-center mt-3'>Paper Recycling Receptacles</h2>
                     <div className="p-5 grid grid-cols-2">
                         <div className="w-3/4">
+
                             <h3 className="text-2xl">Paper</h3>
-                            <div className="border-2 border-black">
+                            <div className="border-2 border-black rounded-lg">
                                 <ul className="list-disc px-5 py-1">
                                     <li>newspapers</li>
                                     <li>magazines</li>
@@ -85,7 +86,7 @@ const RecyclingDosAndDonts = () => {
                         </div>
                         <div className="w-3/4">
                             <h3 className="text-2xl">Cardboard</h3>
-                            <div className="border-2 border-black">
+                            <div className="border-2 border-black rounded-lg">
                                 <ul className="list-disc px-5 py-1">
                                     <li>Corrugated carboard</li>
                                     <li>Shipping, shoe, and gift boxes</li>
@@ -101,7 +102,7 @@ const RecyclingDosAndDonts = () => {
                     <div className="p-5 grid grid-cols-2">
                         <div className="w-3/4">
                             <h3 className="text-2xl">Metal</h3>
-                            <div className="border-2 border-black">
+                            <div className="border-2 border-black rounded-lg">
                                 <ul className="list-disc px-5 py-1">
                                     <li>Aluminum foil and trays</li>
                                     <li>Metal caps and lids</li>
@@ -113,7 +114,7 @@ const RecyclingDosAndDonts = () => {
                             </div></div>
                         <div className="w-3/4">
                             <h3 className="text-2xl">Plastic</h3>
-                            <div className="border-2 border-black">
+                            <div className="border-2 border-black rounded-lg">
                                 <ul className="list-disc px-5 py-1">
                                     <li>Food and drink containers</li>
                                     <li>Caps and lids</li>
@@ -127,7 +128,7 @@ const RecyclingDosAndDonts = () => {
                     <div className="p-5 grid grid-cols-2">
                         <div className="w-3/4">
                             <h3 className="text-2xl">Glass</h3>
-                            <div className="border-2 border-black">
+                            <div className="border-2 border-black rounded-lg">
                                 <ul className="list-disc px-5 py-1">
                                     <li>Can: glass bottles and jars</li>
                                     <li>Can't: drinking glasses, eyeglasses, glass furniture, mirrors, light bulbs</li>
@@ -135,13 +136,13 @@ const RecyclingDosAndDonts = () => {
                             </div></div>
                         <div className="w-3/4">
                             <h3 className="text-2xl">Cartons</h3>
-                            <div className="border-2 border-black">
+                            <div className="border-2 border-black rounded-lg p-2">
                                 You can recycle beverage and liquid food cartons like milk and soup cartons and juice boxes. These are lined with a plastic film to make them leak-proof, and the plastic layer can be removed and recycled.
                             </div></div>
                     </div>
 
                     <h2 className='text-2xl text-center mt-3'>Items that CANNOT be recycled and must be thrown in the trash:</h2>
-                    <div className="border-2 border-black mx-20 my-5">
+                    <div className="border-2 border-black rounded-lg mx-20 my-5">
                         <ul className="list-disc px-5 py-1">
                             <li>Heavily soiled paper plates and pizza boxes</li>
                             <li>Ice cream tubs</li>
