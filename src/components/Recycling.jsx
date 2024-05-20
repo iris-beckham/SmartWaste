@@ -1,6 +1,7 @@
 import { CircleChevronRight, CircleChevronLeft } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Filter } from 'lucide-react';
+import { capitalizeFirstLetters } from '../helpers.js'
 
 
 const Recycling = () => {
@@ -216,11 +217,8 @@ const Recycling = () => {
                                 const { site_location, partner, dsny_zone, paper_bins, mgp_bins, site_type } = site;
                                 return (
                                     <div key={site_location + mgp_bins + paper_bins + site_type} className="bg-orange-500 mx-5 rounded-lg px-5 py-7 hover:scale-105 transition-transform duration-300">
-                                        {partner === "N/A" ? "" : <p>{partner}</p>}
-                                        <p>{site_location}</p>
-                                        {dsny_zone}
-                                        {paper_bins}, {mgp_bins}
-
+                                        {partner === "N/A" ? "" : <p>{capitalizeFirstLetters(partner)}</p>}
+                                        <p>{capitalizeFirstLetters(site_location)}</p>
                                     </div>
                                 )
                             })}
