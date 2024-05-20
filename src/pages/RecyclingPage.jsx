@@ -1,9 +1,7 @@
 import Recycling from "../components/Recycling";
 
 const RecyclingPage = () => {
-    return (
-        <Recycling />
-    )
-}
+  return <Recycling />;
+};
 
-export default RecyclingPage
+export default RecyclingPage;
