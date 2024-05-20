@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import CompostSiteCard from "./CompostSiteCard";
 import Geolocation from "./Geolocation";
 
-const URL = import.meta.env.VITE_BASE_API_URL;
-const TOKEN = import.meta.env.VITE_APP_TOKEN;
+// const URL = import.meta.env.VITE_BASE_API_URL;
+// const TOKEN = import.meta.env.VITE_APP_TOKEN;
 
 const Compost = () => {
   const [compostingSites, setCompostingSites] = useState([]);
@@ -141,7 +141,7 @@ const Compost = () => {
                 {compostingSites.length} Locations
               </div>
             </div>
-            <div className="overflow-y-auto h-72 grid gap-4">
+            <div className="overflow-y-auto h-120 grid gap-4">
               {compostingSites.length > 0 && sortedSitesByDistance.length === 0
                 ? compostingSites.map((site) => (
                     <CompostSiteCard key={site.object_id} site={site} />

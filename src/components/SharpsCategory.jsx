@@ -1,5 +1,6 @@
 import { CircleChevronRight, CircleChevronLeft } from "lucide-react";
 import { useState, useEffect } from "react";
+import Geolocation from "./Geolocation";
 
 const SharpsCategory = () => {
   // this is the usestate for the sharps disposal centers
@@ -7,17 +8,17 @@ const SharpsCategory = () => {
     allSharpsAndMedicalDropOffLocations,
     setAllSharpsAndMedicalDropOffLocations,
   ] = useState([]);
+  const [currentLocation, setCurrentLocation] = useState({});
+  const [sortedSitesByDistance, setSortedSitesByDistance] = useState([]);
   // this is the filtered sharps disposal list
   const [filteredDropOffLocations, setFilteredDropOffLocations] = useState([]);
   // this usestate sets index of carousel images
   const [currentIndex, setCurrentIndex] = useState(0);
   //this useState sets array of images
   const imagesArrayUrls = [
-    "https://res.cloudinary.com/dvmczcg3f/image/upload/v1712642472/Tale%20Blazers/tarot-cards-profile-pic_fv6p7p.jpg",
-    "https://res.cloudinary.com/dvmczcg3f/image/upload/v1711650725/chartd_qlhbgr.jpg",
-    "https://res.cloudinary.com/dvmczcg3f/image/upload/v1711649108/colal-jpg_jzmskc.jpg",
-    "https://res.cloudinary.com/dvmczcg3f/image/upload/v1711416478/CourseQuest%20-%20App/circuit_board_pic_kgsrqb.jpg",
-    "https://res.cloudinary.com/dvmczcg3f/image/upload/v1706632712/Daily%20Spark%20-%20Landing%20Page%20Landscape%20Photos/vibrant-orange-landscape-of-sand-dunes-and-trees_e96ilu.jpg",
+    "https://res.cloudinary.com/dvmczcg3f/image/upload/v1716174256/pics_syringes_a4psvx.jpg",
+    "https://res.cloudinary.com/dvmczcg3f/image/upload/v1716174594/meds_xgekon.jpg",
+    "https://res.cloudinary.com/dvmczcg3f/image/upload/v1716174378/lancets_oimu1t.jpg",
   ];
 
   const goToPreviousImage = () => {
@@ -39,7 +40,9 @@ const SharpsCategory = () => {
   };
 
   useEffect(() => {
-    fetch(`https://data.cityofnewyork.us/resource/edk2-vkjh.json`)
+    fetch(
+      `https://data.cityofnewyork.us/resource/edk2-vkjh.json?$query=SELECT%20borough%2C%20ntaname%2C%20site_type%2C%20sitename%2C%20zipcode%2C%20days_hours%2C%20address%2C%20notes%2C%20bin%2C%20latitude%2C%20longitude`
+    )
       .then((res) => res.json())
       .then((data) => {
         setAllSharpsAndMedicalDropOffLocations(data);
@@ -49,6 +52,21 @@ const SharpsCategory = () => {
       });
   }, []);
 
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const userCoords = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        };
+        setCurrentLocation(userCoords);
+      },
+      (error) => {
+        console.error("Error getting the current location:", error);
+      }
+    );
+  }, []);
+  console.log("CURRENT LOCATION", currentLocation);
   console.log(allSharpsAndMedicalDropOffLocations);
 
   return (
@@ -87,7 +105,7 @@ const SharpsCategory = () => {
             <div className="p-5 grid grid-cols-2">
               <div className="w-3/4">
                 <h3 className="text-2xl">For Sharps</h3>
-                <div className="border-2 border-black">
+                <div className="border-2 border-black rounded-lg">
                   <ul className="list-disc px-5 py-1">
                     <li>Syringes</li>
                     <li>Needles</li>
@@ -99,7 +117,7 @@ const SharpsCategory = () => {
               </div>
               <div className="w-3/4">
                 <h3 className="text-2xl">For Medical Waste</h3>
-                <div className="border-2 border-black">
+                <div className="border-2 border-black rounded-lg">
                   <ul className="list-disc px-5 py-1">
                     <li>Medication</li>
                     <li>
@@ -114,6 +132,21 @@ const SharpsCategory = () => {
                 </div>
               </div>
             </div>
+            <div className="mx-5">
+              <div className="text-2xl">Useful Links:</div>
+
+              <ul className="list-disc px-5 py-1">
+                <li>
+                  <a
+                    href="https://www.fda.gov/media/87634/download"
+                    target={"_blank"}
+                    className="text-blue-500"
+                  >
+                    Be Smart with Sharps Pamphlet (PDF)
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div className="col-span-1 md:col-span-2 bg-white">
@@ -122,39 +155,55 @@ const SharpsCategory = () => {
               Waste Drop Off Sites
             </div>
             <hr className="border-4 border-white mb-10 mx-5 rounded" />
-            <div>
-              {/* <Geolocation
-                data={compostingSites}
+            <div className="flex">
+              <Geolocation
+                data={allSharpsAndMedicalDropOffLocations}
                 currentLocation={currentLocation}
                 setSortedSitesByDistance={setSortedSitesByDistance}
-              /> */}
+              />
               <div className="text-center text-white ml-auto mr-5 text-lg font-bold py-3">
                 {allSharpsAndMedicalDropOffLocations.length} Locations
               </div>
             </div>
-            <div className="overflow-y-auto h-72 grid gap-4 hover:overflow-scroll">
-              {/* //THIS ONE! */}
-              {allSharpsAndMedicalDropOffLocations.map((location) => (
-                <div key={location.id}>
-                  <div className="bg-red-300 mx-5 rounded-lg px-5 py-7 hover:scale-105 transition-transform duration-300">
-                    <div className="font-semibold">{location.sitename}</div>
-                    <div>Borough: {location.borough}</div>
-                    <div>Neighborhood: {location.ntaname}</div>
-                    <div>Address: {location.address}</div>
-                    <div>Site Type: {location.site_type}</div>
-                    {/* <div>Open: {}</div> */}
-                    {/* <div>{location}</div> */}
-                    {/* <div>Location: {borough}</div>
-                    <div>Neighborhood: {ntaname}</div>
-                    <div>Address: {location}</div>
-                    <div>Open: {open_months}</div>
-                    <div>Times of operation: {operation_day_hours}</div>
-                    <div>
-                      <Link to={website}>Visit website</Link>
-                    </div> */}
-                  </div>
-                </div>
-              ))}
+            <div className="overflow-y-auto h-120 grid gap-4 hover:overflow-scroll">
+              {allSharpsAndMedicalDropOffLocations.length > 0 &&
+              sortedSitesByDistance.length === 0
+                ? allSharpsAndMedicalDropOffLocations.map((location) => (
+                    <div key={location.bin}>
+                      <div className="bg-red-300 mx-5 rounded-lg px-5 py-7 hover:scale-105 transition-transform duration-300">
+                        <div className="font-semibold">{location.sitename}</div>
+                        <div>Borough: {location.borough}</div>
+                        <div>Neighborhood: {location.ntaname}</div>
+                        <div>Address: {location.address}</div>
+                        <div>Site Type: {location.site_type}</div>
+                        {location.distance && (
+                          <div>
+                            {((location.distance / 1000) * 0.62).toFixed(1)}{" "}
+                            miles away
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))
+                : sortedSitesByDistance.map((location) => (
+                    <div key={location.bin}>
+                      <div className="bg-red-300 mx-5 rounded-lg px-5 py-7 hover:scale-105 transition-transform duration-300">
+                        <div className="font-semibold">
+                          {location.coord.sitename}
+                        </div>
+                        <div>Borough: {location.coord.borough}</div>
+                        <div>Neighborhood: {location.coord.ntaname}</div>
+                        <div>Address: {location.coord.address}</div>
+                        <div>Site Type: {location.coord.site_type}</div>
+                        {location.distance && (
+                          <div>
+                            {((location.distance / 1000) * 0.62).toFixed(1)}{" "}
+                            miles away
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
             </div>
           </div>
         </div>

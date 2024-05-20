@@ -9,10 +9,10 @@ const CompostSiteCard = ({ site }) => {
     open_months,
     operation_day_hours,
     website,
+    coord,
+    distance,
   } = site;
-
-  const { coord } = site;
-
+  console.log("WEBSITE", website);
   return (
     <div className="bg-green-300 mx-5 rounded-lg px-5 py-7 hover:scale-105 transition-transform duration-300">
       <div>Location: {coord ? coord.borough : borough}</div>
@@ -23,15 +23,9 @@ const CompostSiteCard = ({ site }) => {
         Times of operation:{" "}
         {coord ? coord.operation_day_hours : operation_day_hours}
       </div>
-      {site.distance && (
-        <div>{((site.distance / 1000) * 0.62).toFixed(1)} miles away</div>
+      {distance && (
+        <div>{((distance / 1000) * 0.62).toFixed(1)} miles away</div>
       )}
-      <div>
-        {/* <Link to={website} target="blank">
-          Click to go to website
-        </Link> */}
-      </div>
-      <div></div>
     </div>
   );
 };
