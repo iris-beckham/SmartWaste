@@ -8,16 +8,17 @@ const Recycling = () => {
     //modal state for filter options: false = hidden, true = visible  
     const [optionsStatus, setOptionsStatus] = useState(false);
     const [filter, setFilter] = useState(false);
+    const [borough, setBorough] = useState([]);
     const [filteredSites, setFilteredSites] = useState([]);
     useEffect(() => {
         fetch(`https://data.cityofnewyork.us/resource/sxx4-xhzg.json`)
             .then((res) => res.json())
             .then((data) => {
-                setRecyclingBins(data)
-                setFilteredSites(data)
+                setRecyclingBins([...new Set(data)])
+                setFilteredSites([...new Set(data)])
+                //NOTE: need to remove BROOKLYN PARK - PIER 1 duplicates
             });
     }, []);
-
 
     // this usestate sets index of carousel images
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -53,15 +54,29 @@ const Recycling = () => {
     }
 
     const handleFilterChange = (e) => {
-        const copy = [...recyclingBins]
         setFilter(e.target.value)
-        if (e.target.value === "paper") {
-            setFilteredSites([...copy.filter((site) => site.paper_bins > 0)])
-        } else if (e.target.value === "mgp") {
-            setFilteredSites([...copy.filter((site) => site.mgp_bins > 0)])
-        } else {
-            setFilteredSites([...copy])
+    }
+
+    const handleBoroughFilterChange = (e) => {
+        setBorough(e.target.value);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        let copy = [...filteredSites];
+        copy = [...copy.filter((site) => site.dsny_zone === borough)]
+        if (filter === "paper") {
+            copy = [...copy.filter((site) => site.paper_bins > 0)]
+        } else if (filter === "mgp") {
+            copy = [...copy.filter((site) => site.mgp_bins > 0)]
         }
+
+        if (copy.length === 0) {
+            setFilteredSites(recyclingBins);
+            handleSubmit(e);
+            //NOTE: user currently has to click "apply filters" twice to first reset then apply new filters
+        }
+        setFilteredSites([...copy])
     }
 
     return (
@@ -173,25 +188,39 @@ const Recycling = () => {
                             <button onClick={() => displayFilterOptions()}><Filter /></button>
                         </p>
                         {optionsStatus ?
-                            <form className="flex justify-end mr-10 mb-2"
-                                action="">
-                                <select name="filter" value={filter} onChange={handleFilterChange}>
-                                    <option value="all" >Any</option>
-                                    <option value="paper">Paper</option>
-                                    <option value="mgp">Glass</option>
-                                    <option value="mgp">Metal</option>
-                                    <option value="mgp">Plastic</option>
-                                </select>
-                            </form>
+                            <div className="flex justify-end mr-10 mb-2">
+                                <form action="" onSubmit={handleSubmit}>
+                                    <select name="filter" value={filter} onChange={handleFilterChange}>
+                                        <option value="all" >Any</option>
+                                        <option value="paper">Paper</option>
+                                        <option value="mgp">Glass</option>
+                                        <option value="mgp">Metal</option>
+                                        <option value="mgp">Plastic</option>
+                                    </select>
+                                    <select name="borough" value={borough} onChange={handleBoroughFilterChange}>
+                                        <option value="BKN">Brooklyn North</option>
+                                        <option value="BKS">Brooklyn South</option>
+                                        <option value="BX">Bronx</option>
+                                        <option value="MAN">Manhattan</option>
+                                        <option value="QE">Queens East</option>
+                                        <option value="QW">Queens West</option>
+                                        <option value="SI">Staten Island</option>
+                                    </select>
+                                    <button type="submit">Apply Filters</button>
+                                </form>
+                            </div>
                             : ''}
                         <hr className="border-4 border-black mb-10 mx-5 rounded" />
                         <div className="overflow-y-auto h-72 grid gap-4">
                             {filteredSites.map((site) => {
-                                const { site_location, partner } = site;
+                                const { site_location, partner, dsny_zone, paper_bins, mgp_bins, site_type } = site;
                                 return (
-                                    <div key={site_location} className="bg-orange-500 mx-5 rounded-lg px-5 py-7 hover:scale-105 transition-transform duration-300">
+                                    <div key={site_location + mgp_bins + paper_bins + site_type} className="bg-orange-500 mx-5 rounded-lg px-5 py-7 hover:scale-105 transition-transform duration-300">
                                         {partner === "N/A" ? "" : <p>{partner}</p>}
                                         <p>{site_location}</p>
+                                        {dsny_zone}
+                                        {paper_bins}, {mgp_bins}
+
                                     </div>
                                 )
                             })}
