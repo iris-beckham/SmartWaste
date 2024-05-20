@@ -24,7 +24,11 @@ const Home = () => {
                 No Waste With,
               </h1>
               <h2 className="text-4xl md:text-6xl font-bold mb-8">
-                Smart Waste!!!
+                <span className="text-green-300">S</span>
+                <span className="text-amber-300">m</span>
+                <span className="text-red-300">a</span>
+                <span className="text-blue-300">r</span>
+                <span className="text-purple-300">t</span> Waste!!!
               </h2>
               <p className="text-lg md:text-xl mb-8">
                 Conscious waste management for NYC residents WHO CARE!
