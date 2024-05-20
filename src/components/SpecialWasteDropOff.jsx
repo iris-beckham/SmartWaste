@@ -11,11 +11,10 @@ const SpecialWaste = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   //this useState sets array of images
   const imagesArrayUrls = [
-    "https://res.cloudinary.com/dvmczcg3f/image/upload/v1712642472/Tale%20Blazers/tarot-cards-profile-pic_fv6p7p.jpg",
-    "https://res.cloudinary.com/dvmczcg3f/image/upload/v1711650725/chartd_qlhbgr.jpg",
-    "https://res.cloudinary.com/dvmczcg3f/image/upload/v1711649108/colal-jpg_jzmskc.jpg",
-    "https://res.cloudinary.com/dvmczcg3f/image/upload/v1711416478/CourseQuest%20-%20App/circuit_board_pic_kgsrqb.jpg",
-    "https://res.cloudinary.com/dvmczcg3f/image/upload/v1706632712/Daily%20Spark%20-%20Landing%20Page%20Landscape%20Photos/vibrant-orange-landscape-of-sand-dunes-and-trees_e96ilu.jpg",
+    "https://res.cloudinary.com/dnqfg86zq/image/upload/v1716179628/a3skvrvbvs613yixdbbo.jpg",
+    "https://res.cloudinary.com/dnqfg86zq/image/upload/v1716179584/e8jjwnyi90apz276oscr.jpg",
+    "https://res.cloudinary.com/dnqfg86zq/image/upload/v1716179357/it0wayxkkega88ntfbqf.jpg",
+    "https://res.cloudinary.com/dnqfg86zq/image/upload/v1716179313/pospqd3dioa4at19gwii.jpg",
   ];
 
   const goToPreviousImage = () => {
@@ -126,7 +125,6 @@ const SpecialWaste = () => {
                 </div>
               </div>
             </div>
-            <hr className="flex border-2 border-slate-900 mx-5 rounded" />
           </div>
         </div>
         <div className="col-span-1 md:col-span-2 bg-white">
